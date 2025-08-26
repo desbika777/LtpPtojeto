@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LTP - Lista de Tarefas Pessoais</title>
+    <link rel="stylesheet" href="assets/css/auth.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <div class="auth-container">
+            <!-- Logo Section -->
+            <div class="logo-section">
+                <div class="logo">
+                    <i class="fas fa-tasks"></i>
+                    <h1>LTP</h1>
+                </div>
+                <p class="tagline">Lista de Tarefas Pessoais</p>
+                <p class="subtitle">Organize sua vida de forma simples e eficiente</p>
+            </div>
+
+            <!-- Login Form -->
+            <div class="form-container" id="loginForm">
+                <div class="form-header">
+                    <h2>Bem-vindo de volta!</h2>
+                    <p>Entre na sua conta para acessar suas tarefas</p>
+                </div>
+                
+                <form class="auth-form">
+                    <div class="input-group">
+                        <i class="fas fa-envelope"></i>
+                        <input type="email" placeholder="E-mail" required id="loginEmail">
+                    </div>
+                    
+                    <div class="input-group">
+                        <i class="fas fa-lock"></i>
+                        <input type="password" placeholder="Senha" required id="loginPassword">
+                        <i class="fas fa-eye toggle-password"></i>
+                    </div>
+                    
+                    <div class="form-options">
+                        <label class="remember-me">
+                            <input type="checkbox">
+                            <span class="checkmark"></span>
+                            Lembrar de mim
+                        </label>
+                        <a href="#" class="forgot-password">Esqueceu a senha?</a>
+                    </div>
+                    
+                    <button type="submit" class="btn-primary">
+                        <i class="fas fa-sign-in-alt"></i>
+                        Entrar
+                    </button>
+                </form>
+                
+                <div class="form-switch">
+                    <p>Não tem uma conta? <a href="#" id="showRegister">Cadastre-se</a></p>
+                </div>
+            </div>
+
+            <!-- Register Form -->
+            <div class="form-container hidden" id="registerForm">
+                <div class="form-header">
+                    <h2>Crie sua conta</h2>
+                    <p>Comece a organizar suas tarefas hoje mesmo</p>
+                </div>
+                
+                <form class="auth-form">
+                    <div class="input-group">
+                        <i class="fas fa-user"></i>
+                        <input type="text" placeholder="Nome completo" required id="registerName">
+                    </div>
+                    
+                    <div class="input-group">
+                        <i class="fas fa-envelope"></i>
+                        <input type="email" placeholder="E-mail" required id="registerEmail">
+                    </div>
+                    
+                    <div class="input-group">
+                        <i class="fas fa-lock"></i>
+                        <input type="password" placeholder="Senha" required id="registerPassword">
+                        <i class="fas fa-eye toggle-password"></i>
+                    </div>
+                    
+                    <div class="input-group">
+                        <i class="fas fa-lock"></i>
+                        <input type="password" placeholder="Confirmar senha" required id="confirmPassword">
+                        <i class="fas fa-eye toggle-password"></i>
+                    </div>
+                    
+                    <div class="form-options">
+                        <label class="remember-me">
+                            <input type="checkbox" required>
+                            <span class="checkmark"></span>
+                            Aceito os <a href="#">termos de uso</a>
+                        </label>
+                    </div>
+                    
+                    <button type="submit" class="btn-primary">
+                        <i class="fas fa-user-plus"></i>
+                        Criar conta
+                    </button>
+                </form>
+                
+                <div class="form-switch">
+                    <p>Já tem uma conta? <a href="#" id="showLogin">Entrar</a></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Background Animation -->
+        <div class="bg-animation">
+            <div class="floating-task">
+                <i class="fas fa-check-circle"></i>
+            </div>
+            <div class="floating-task">
+                <i class="fas fa-calendar-alt"></i>
+            </div>
+            <div class="floating-task">
+                <i class="fas fa-clock"></i>
+            </div>
+            <div class="floating-task">
+                <i class="fas fa-star"></i>
+            </div>
+        </div>
+    </div>
+
+    <script src="assets/js/auth.js"></script>
+</body>
+</html>
