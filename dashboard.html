@@ -511,28 +511,26 @@
                         </div>
                     </div>
 
-                    <!-- Features Section -->
+                    <!-- Features Section (static, non-clickable) -->
                     <div class="footer-section">
                         <h3><i class="fas fa-rocket"></i> Recursos</h3>
-                        <ul class="footer-links">
-                            <li><a href="#"><i class="fas fa-calendar-alt"></i> Calendário Inteligente</a></li>
-                            <li><a href="#"><i class="fas fa-chart-line"></i> Estatísticas Avançadas</a></li>
-                            <li><a href="#"><i class="fas fa-trophy"></i> Sistema de Conquistas</a></li>
-                            <li><a href="#"><i class="fas fa-palette"></i> Temas Personalizados</a></li>
-                            <li><a href="#"><i class="fas fa-mobile-alt"></i> Design Responsivo</a></li>
-                        </ul>
+                        <div class="footer-static-list" aria-label="Principais recursos">
+                            <div class="feature-item"><i class="fas fa-calendar-alt"></i><span>Calendário Inteligente</span></div>
+                            <div class="feature-item"><i class="fas fa-chart-line"></i><span>Estatísticas Avançadas</span></div>
+                            <div class="feature-item"><i class="fas fa-trophy"></i><span>Sistema de Conquistas</span></div>
+                            <div class="feature-item"><i class="fas fa-mobile-alt"></i><span>Design Responsivo</span></div>
+                        </div>
                     </div>
 
-                    <!-- Tools Section -->
+                    <!-- Tools Section (static, non-clickable) -->
                     <div class="footer-section">
                         <h3><i class="fas fa-tools"></i> Ferramentas</h3>
-                        <ul class="footer-links">
-                            <li><a href="#"><i class="fas fa-tasks"></i> Gerenciador de Tarefas</a></li>
-                            <li><a href="#"><i class="fas fa-filter"></i> Filtros Inteligentes</a></li>
-                            <li><a href="#"><i class="fas fa-sort"></i> Ordenação Avançada</a></li>
-                            <li><a href="#"><i class="fas fa-bell"></i> Notificações</a></li>
-                            <li><a href="#"><i class="fas fa-download"></i> Exportar Dados</a></li>
-                        </ul>
+                        <div class="footer-static-list" aria-label="Principais ferramentas">
+                            <div class="feature-item"><i class="fas fa-tasks"></i><span>Gerenciador de Tarefas</span></div>
+                            <div class="feature-item"><i class="fas fa-filter"></i><span>Filtros Inteligentes</span></div>
+                            <div class="feature-item"><i class="fas fa-sort"></i><span>Ordenação Avançada</span></div>
+                            <div class="feature-item"><i class="fas fa-magnifying-glass"></i><span>Busca Rápida</span></div>
+                        </div>
                     </div>
 
                     <!-- Stats Section -->
@@ -552,41 +550,18 @@
                                 <div class="stat-label">Produtividade</div>
                             </div>
                         </div>
-                        <div class="progress-ring">
-                            <svg class="progress-ring-svg" width="80" height="80">
-                                <circle class="progress-ring-circle-bg" cx="40" cy="40" r="35"></circle>
-                                <circle class="progress-ring-circle" cx="40" cy="40" r="35" id="progressCircle"></circle>
-                            </svg>
-                            <div class="progress-text">
-                                <span id="progressText">0%</span>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>
 
             <!-- Bottom Bar -->
             <div class="footer-bottom">
-                <div class="footer-bottom-content">
-                    <div class="copyright">
-                        <p>&copy; 2025 LTP Task Manager. Desenvolvido com <i class="fas fa-heart heart-beat"></i> e muita dedicação.</p>
-                    </div>
-                    <div class="footer-tech">
-                        <span class="tech-badge">
-                            <i class="fab fa-html5"></i> HTML5
-                        </span>
-                        <span class="tech-badge">
-                            <i class="fab fa-css3-alt"></i> CSS3
-                        </span>
-                        <span class="tech-badge">
-                            <i class="fab fa-js-square"></i> JavaScript
-                        </span>
-                        <span class="tech-badge">
-                            <i class="fas fa-mobile-alt"></i> PWA Ready
-                        </span>
-                    </div>
-                    <div class="scroll-to-top" id="scrollToTop">
+                <div class="footer-bottom-content footer-bottom-centered">
+                    <div class="scroll-to-top" id="scrollToTop" title="Voltar ao topo">
                         <i class="fas fa-arrow-up"></i>
+                    </div>
+                    <div class="copyright">
+                        <p>&copy; 2025 LTP Task Manager. Desenvolvido por Enzo Gabriel Menezes, Pedro Henrique Rodrigues e com muita dedicação.</p>
                     </div>
                 </div>
             </div>

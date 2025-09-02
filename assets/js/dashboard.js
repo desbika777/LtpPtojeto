@@ -673,11 +673,11 @@ class TaskManager {
     }
 
     animateStatCircle(circle, percentage) {
-        circle.style.setProperty('--percentage', `${percentage}%`);
-        circle.style.animation = 'none';
-        setTimeout(() => {
-            circle.style.animation = 'spinIn 1s ease-out';
-        }, 10);
+        // Circle visuals removed; function retained for future extensibility
+        // Just store percentage as data attribute (no animation)
+        if (circle) {
+            circle.dataset.percentage = percentage;
+        }
     }
 
     calculateProfileStats() {
