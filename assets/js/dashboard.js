@@ -520,11 +520,7 @@ class TaskManager {
         });
 
         // Toggle switches
-        document.querySelectorAll('.toggle-input').forEach(toggle => {
-            toggle.addEventListener('change', () => {
-                this.savePreference(toggle.id, toggle.checked);
-            });
-        });
+    // (Preferências removidas)
     }
 
     loadProfileData() {
@@ -536,8 +532,7 @@ class TaskManager {
         document.getElementById('profileEmail').textContent = userData.email || 'usuario@email.com';
         document.getElementById('editName').value = userData.name || '';
         document.getElementById('editEmail').value = userData.email || '';
-        document.getElementById('editProfession').value = profileData.profession || '';
-        document.getElementById('editBio').value = profileData.bio || '';
+    // Campos de meta/foco removidos
 
         // Load avatar
         if (profileData.avatar) {
@@ -549,11 +544,7 @@ class TaskManager {
         document.getElementById('memberSince').textContent = 
             `Membro desde ${memberSince.toLocaleDateString('pt-BR', { month: 'short', year: 'numeric' })}`;
 
-        // Load preferences
-        const preferences = profileData.preferences || {};
-        document.getElementById('soundNotifications').checked = preferences.soundNotifications !== false;
-        document.getElementById('desktopNotifications').checked = preferences.desktopNotifications !== false;
-        document.getElementById('dailyReminders').checked = preferences.dailyReminders || false;
+    // Preferências removidas
 
         // Update achievements
         this.updateAchievements();
@@ -568,10 +559,7 @@ class TaskManager {
     }
 
     saveProfileInfo() {
-        const profileData = {
-            profession: document.getElementById('editProfession').value,
-            bio: document.getElementById('editBio').value
-        };
+    const profileData = {}; // metas removidas
 
         const userData = JSON.parse(localStorage.getItem('ltpUser') || '{}');
         userData.name = document.getElementById('editName').value;
@@ -587,6 +575,7 @@ class TaskManager {
 
         this.showNotification('Perfil atualizado com sucesso! 🎉', 'success');
         this.createConfettiEffect();
+    // progresso diário removido
     }
 
     createConfettiEffect() {
@@ -639,22 +628,7 @@ class TaskManager {
         document.getElementById(tabType + 'Tab').classList.add('active');
     }
 
-    savePreference(key, value) {
-        const preferences = {};
-        preferences[key] = value;
-        this.saveProfileData({ preferences });
-        
-        const labels = {
-            soundNotifications: 'Sons de notificação',
-            desktopNotifications: 'Notificações na área de trabalho',
-            dailyReminders: 'Lembretes diários'
-        };
-        
-        this.showNotification(
-            `${labels[key]} ${value ? 'ativado' : 'desativado'}`, 
-            'info'
-        );
-    }
+    // savePreference removido
 
     animateProfileStats() {
         const stats = this.calculateProfileStats();
@@ -670,6 +644,7 @@ class TaskManager {
         // Update total completed
         this.animateStatCircle(document.querySelectorAll('.stat-circle')[2], Math.min((stats.totalCompleted / 50) * 100, 100));
         document.getElementById('totalCompleted').textContent = stats.totalCompleted;
+    // metas removidas
     }
 
     animateStatCircle(circle, percentage) {
@@ -684,6 +659,8 @@ class TaskManager {
         const completedTasks = this.tasks.filter(task => task.completed).length;
         const totalTasks = this.tasks.length;
         const productivity = totalTasks > 0 ? Math.round((completedTasks / totalTasks) * 100) : 0;
+    const todayStr = this.formatDate(new Date());
+    const todayCompleted = this.tasks.filter(t => t.completed && t.date === todayStr).length;
 
         // Calculate streak (simplified)
         const today = new Date();
@@ -705,7 +682,8 @@ class TaskManager {
         return {
             productivity,
             streakDays,
-            totalCompleted: completedTasks
+            totalCompleted: completedTasks,
+            todayCompleted
         };
     }
 
@@ -803,6 +781,7 @@ class TaskManager {
         if (footerProductivity) {
             this.animateNumber(footerProductivity, stats.productivity, '%');
         }
+    // barra de meta diária removida
 
         if (progressText) {
             progressText.textContent = `${stats.productivity}%`;
@@ -815,6 +794,8 @@ class TaskManager {
             progressCircle.style.strokeDashoffset = offset;
         }
     }
+
+    // updateDailyGoalProgress removido
 
     animateNumber(element, targetValue, suffix = '') {
         const startValue = 0;
@@ -891,15 +872,7 @@ class TaskManager {
         
         // Initialize profile data if it doesn't exist
         if (!user.profile) {
-            user.profile = {
-                profession: '',
-                bio: '',
-                preferences: {
-                    soundNotifications: true,
-                    desktopNotifications: true,
-                    dailyReminders: false
-                }
-            };
+            user.profile = {};
             localStorage.setItem('ltpUser', JSON.stringify(user));
         }
         

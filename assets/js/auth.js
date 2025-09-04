@@ -87,6 +87,8 @@ document.addEventListener('DOMContentLoaded', function() {
         const email = document.getElementById('registerEmail').value;
         const password = document.getElementById('registerPassword').value;
         const confirmPassword = document.getElementById('confirmPassword').value;
+    const mismatchEl = document.getElementById('passwordMismatch');
+    mismatchEl.classList.add('hidden');
         
         if (validateRegister(name, email, password, confirmPassword)) {
             showLoadingButton(this.querySelector('.btn-primary'));
@@ -145,7 +147,8 @@ document.addEventListener('DOMContentLoaded', function() {
         }
         
         if (password !== confirmPassword) {
-            showMessage('As senhas não coincidem.', 'error');
+            const mismatchEl = document.getElementById('passwordMismatch');
+            mismatchEl.classList.remove('hidden');
             return false;
         }
         
@@ -240,6 +243,61 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Add dynamic background effect
     createParticles();
+
+    // --- Password strength + live mismatch feedback ---
+    const pwdInput = document.getElementById('registerPassword');
+    const confirmInput = document.getElementById('confirmPassword');
+    const strengthWrapper = document.getElementById('passwordStrength');
+    const barSpan = strengthWrapper ? strengthWrapper.querySelector('.strength-bar span') : null;
+    const mismatchEl = document.getElementById('passwordMismatch');
+
+    function assessStrength(pwd) {
+        let score = 0;
+        if (pwd.length >= 6) score++;
+        if (/[A-Z]/.test(pwd)) score++;
+        if (/[0-9]/.test(pwd)) score++;
+        if (/[^A-Za-z0-9]/.test(pwd)) score++;
+        if (pwd.length >= 10) score++;
+        return score; // 0-5
+    }
+
+    function updateStrength() {
+        if (!barSpan) return;
+        const val = pwdInput.value.trim();
+        const score = assessStrength(val);
+        const percent = [0, 25, 45, 65, 85, 100][score];
+        barSpan.style.width = percent + '%';
+        strengthWrapper.classList.remove('pwd-weak','pwd-medium','pwd-strong','pwd-very-strong');
+        if (!val) {
+            barSpan.style.width = '0';
+            return;
+        }
+        if (score <= 1) strengthWrapper.classList.add('pwd-weak');
+        else if (score === 2) strengthWrapper.classList.add('pwd-medium');
+        else if (score === 3) strengthWrapper.classList.add('pwd-strong');
+        else strengthWrapper.classList.add('pwd-very-strong');
+    }
+
+    if (pwdInput) {
+        pwdInput.addEventListener('input', () => {
+            updateStrength();
+            if (confirmInput && confirmInput.value) {
+                if (pwdInput.value !== confirmInput.value) mismatchEl.classList.remove('hidden');
+                else mismatchEl.classList.add('hidden');
+            }
+        });
+    }
+
+    if (confirmInput) {
+        confirmInput.addEventListener('input', () => {
+            if (!confirmInput.value) {
+                mismatchEl.classList.add('hidden');
+                return;
+            }
+            if (pwdInput.value !== confirmInput.value) mismatchEl.classList.remove('hidden');
+            else mismatchEl.classList.add('hidden');
+        });
+    }
 });
 
 function createParticles() {

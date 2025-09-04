@@ -6,10 +6,52 @@
 
 body {
     font-family: 'Poppins', sans-serif;
-    background: #f5f7fa; /* Padronizado: cor única para evitar troca perceptiva antes do footer */
+    /* Background atualizado para um visual mais estilizado e dinâmico */
+    background: #f5f7fa;
     min-height: 100vh;
     color: #333;
     -webkit-font-smoothing: antialiased;
+    position: relative;
+}
+
+/* Camada decorativa de fundo (cores suaves e radiais) */
+body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    background:
+        radial-gradient(circle at 85% 25%, rgba(118,75,162,0.18), transparent 60%),
+        radial-gradient(circle at 18% 70%, rgba(102,126,234,0.22), transparent 62%),
+        radial-gradient(circle at 70% 85%, rgba(102,126,234,0.12), transparent 55%),
+        linear-gradient(135deg, #eef2ff 0%, #f5f7fa 35%, #ffffff 100%);
+    animation: bgFloat 22s ease-in-out infinite;
+    will-change: transform, opacity;
+}
+
+/* Brilhos sutis em movimento lento */
+body::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    z-index: -2;
+    background:
+        repeating-linear-gradient(45deg, rgba(255,255,255,0.06) 0 2px, transparent 2px 6px);
+    opacity: 0.3;
+    mix-blend-mode: overlay;
+    animation: patternDrift 60s linear infinite;
+}
+
+@keyframes bgFloat {
+    0%, 100% { transform: translateY(0) translateX(0); }
+    40% { transform: translateY(18px) translateX(-10px); }
+    70% { transform: translateY(-12px) translateX(8px); }
+}
+
+@keyframes patternDrift {
+    0% { transform: translateX(0) translateY(0); }
+    100% { transform: translateX(120px) translateY(80px); }
 }
 
 /* Header */
@@ -22,9 +64,11 @@ body {
 }
 
 .header-content {
-    max-width: 1200px;
+    /* Reajuste: levemente centralizado, sem perder amplitude */
+    max-width: 1350px;
+    width: 92%;
     margin: 0 auto;
-    padding: 1rem 2rem;
+    padding: 1rem 1.5rem;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -899,6 +943,8 @@ body {
     z-index: 1;
 }
 
+/* Component de meta diária removido */
+
 /* Profile Tabs */
 .profile-tabs {
     display: flex;
@@ -1224,7 +1270,8 @@ body {
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     color: white;
     overflow: hidden;
-    margin-top: 4rem;
+    /* Espaço ainda mais compacto conforme solicitação */
+    margin-top: 1.25rem;
 }
 
 .wave-background {
@@ -1323,49 +1370,60 @@ body {
     font-size: 1rem;
 }
 
-.social-links {
-    display: flex;
-    gap: 1rem;
+/* Bloco de redes sociais removido */
+/* Mini tags (substituto compacto para redes sociais) */
+.footer-mini-tags {
     margin-top: 2rem;
-}
-
-.social-link {
     display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 50px;
-    height: 50px;
-    background: rgba(255, 255, 255, 0.1);
-    border: 2px solid rgba(255, 255, 255, 0.2);
-    border-radius: 50%;
-    color: white;
-    text-decoration: none;
-    transition: all 0.3s ease;
-    position: relative;
-    overflow: hidden;
-    backdrop-filter: blur(10px);
+    flex-wrap: wrap;
+    gap: .6rem;
+    max-width: 340px;
 }
-
-.social-link::before {
+.mini-tag {
+    --grad: linear-gradient(135deg, #ffffff 0%, #dfe3ff 100%);
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: .4rem;
+    padding: .55rem .85rem;
+    font-size: .72rem;
+    font-weight: 500;
+    letter-spacing: .4px;
+    border-radius: 14px;
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.28);
+    color: #fff;
+    backdrop-filter: blur(6px);
+    cursor: default;
+    isolation: isolate;
+    transition: all .35s ease;
+    overflow: hidden;
+}
+.mini-tag i {
+    font-size: .8rem;
+    background: var(--grad);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,.35));
+}
+.mini-tag::before {
     content: '';
     position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
-    transition: left 0.5s ease;
+    inset: 0;
+    background: linear-gradient(120deg, rgba(255,255,255,0.4), rgba(255,255,255,0));
+    opacity: 0;
+    transition: opacity .5s ease;
+    pointer-events: none;
 }
-
-.social-link:hover::before {
-    left: 100%;
+.mini-tag:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 22px -6px rgba(0,0,0,0.45);
+    background: rgba(255,255,255,0.12);
 }
-
-.social-link:hover {
-    transform: translateY(-5px) scale(1.1);
-    background: rgba(255, 255, 255, 0.2);
-    border-color: rgba(255, 255, 255, 0.4);
-    box-shadow: 0 10px 30px rgba(255, 255, 255, 0.2);
+.mini-tag:hover::before { opacity: .6; }
+@media (max-width:768px){
+  .footer-mini-tags { max-width: 100%; }
 }
 
 .footer-section {
@@ -1715,9 +1773,7 @@ body {
         text-align: center;
     }
     
-    .social-links {
-        justify-content: center;
-    }
+    /* Redes sociais removidas */
     
     .footer-tech {
         justify-content: center;

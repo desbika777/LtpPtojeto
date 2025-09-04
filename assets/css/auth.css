@@ -125,6 +125,70 @@ body {
     gap: 1rem;
 }
 
+/* Compactação específica do formulário de registro para evitar scroll */
+#registerForm .form-header { margin-bottom: 1rem; }
+#registerForm .auth-form { gap: 0.75rem; }
+#registerForm .password-strength { margin-top: -0.4rem; }
+#registerForm #passwordHint { display: none; }
+#registerForm .input-hint.mismatch { margin-top: -0.25rem; }
+#registerForm .input-group input { padding-top: 0.9rem; padding-bottom: 0.9rem; }
+#registerForm .btn-primary { margin-top: 0.25rem; }
+
+/* Ajuda / feedback campos registro */
+.input-hint {
+    font-size: 0.7rem;
+    color: #777;
+    margin-top: -0.5rem;
+    line-height: 1.2;
+}
+
+.input-hint.mismatch { color: #d93025; }
+.input-hint.hidden { display: none; }
+
+.password-strength {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+    margin-top: -0.25rem;
+}
+
+.password-strength .strength-bar {
+    background: #eceff4;
+    border-radius: 8px;
+    height: 8px;
+    position: relative;
+    overflow: hidden;
+}
+
+.password-strength .strength-bar span {
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 0;
+    background: linear-gradient(135deg, #f44336, #ff9800);
+    border-radius: inherit;
+    transition: width 0.4s ease, background 0.4s ease;
+}
+
+.password-strength .strength-text {
+    font-size: 0.65rem;
+    letter-spacing: 0.5px;
+    font-weight: 600;
+    text-transform: uppercase;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    opacity: 0.85;
+}
+
+/* Estados de força */
+.pwd-weak span { background: linear-gradient(135deg, #f44336, #ff7043) !important; }
+.pwd-medium span { background: linear-gradient(135deg, #ffa000, #ffca28) !important; }
+.pwd-strong span { background: linear-gradient(135deg, #43a047, #66bb6a) !important; }
+.pwd-very-strong span { background: linear-gradient(135deg, #2e7d32, #26a69a) !important; }
+
 .input-group {
     position: relative;
     display: flex;
