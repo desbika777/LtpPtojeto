@@ -1,0 +1,6 @@
+RewriteEngine On
+
+# Redirect all requests to router.php for pretty URLs
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^ router.php [L]

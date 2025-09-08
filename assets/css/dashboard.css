@@ -1187,6 +1187,7 @@ body::after {
 .achievement-card.unlocked {
     border-color: #4CAF50;
     background: linear-gradient(135deg, rgba(76, 175, 80, 0.1) 0%, rgba(139, 195, 74, 0.1) 100%);
+    box-shadow: 0 10px 25px rgba(76, 175, 80, 0.15);
 }
 
 .achievement-card.locked {

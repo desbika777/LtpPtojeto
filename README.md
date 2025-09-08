@@ -55,7 +55,7 @@ Um sistema moderno e interativo de gerenciamento de tarefas pessoais desenvolvid
 ## 🚀 Como Usar
 
 ### 1. Primeiro Acesso
-1. Abra o arquivo `index.html` no navegador
+1. Acesse `index.php` em um servidor com PHP habilitado (ex.: localhost)
 2. Clique em "Cadastre-se" para criar uma conta
 3. Preencha seus dados e aceite os termos
 4. Você será redirecionado para o dashboard
@@ -95,8 +95,8 @@ Um sistema moderno e interativo de gerenciamento de tarefas pessoais desenvolvid
 
 ```
 LTP-TaskManager/
-├── index.html              # Página de login/registro
-├── dashboard.html           # Dashboard principal
+├── index.php               # Página de login/registro (PHP)
+├── dashboard.php           # Dashboard principal (PHP)
 ├── assets/
 │   ├── css/
 │   │   ├── auth.css        # Estilos da autenticação

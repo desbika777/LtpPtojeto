@@ -122,6 +122,7 @@ class TaskManager {
             date: this.taskDate.value,
             category: this.taskCategory.value,
             completed: false,
+            completedAt: null,
             createdAt: new Date().toISOString()
         };
 
@@ -160,6 +161,7 @@ class TaskManager {
         const task = this.tasks.find(t => t.id === taskId);
         if (task) {
             task.completed = !task.completed;
+            task.completedAt = task.completed ? new Date().toISOString() : null;
             this.saveTasks();
             this.displayTasks();
             this.updateStatistics();
@@ -347,6 +349,9 @@ class TaskManager {
         if (document.getElementById('footerTotalTasks')) {
             this.updateFooterStats();
         }
+
+    // Keep achievements in sync with current stats
+    this.updateAchievements();
     }
 
     // Calendar
@@ -690,21 +695,32 @@ class TaskManager {
     updateAchievements() {
         const stats = this.calculateProfileStats();
         const achievements = document.querySelectorAll('.achievement-card');
+        if (achievements.length === 0) return;
 
-        // Achievement logic
-        const achievementConditions = [
-            stats.totalCompleted >= 1,  // Primeira Tarefa
-            stats.totalCompleted >= 10, // Produtivo
-            stats.streakDays >= 7,      // Em Chamas
-            stats.totalCompleted >= 100, // Mestre das Tarefas
-            this.hasUsedAllCategories(), // Organizador Supremo
-            this.getOnTimeTasksCount() >= 20 // Pontual
+        const usedCategoriesCount = new Set(this.tasks.map(t => t.category)).size;
+        const onTimeCount = this.getOnTimeTasksCount();
+
+        // Conditions and progress data for each achievement
+        const achData = [
+            { unlocked: stats.totalCompleted >= 1,  progress: `${Math.min(stats.totalCompleted, 1)}/1` },            // Primeira Tarefa
+            { unlocked: stats.totalCompleted >= 10, progress: `${Math.min(stats.totalCompleted, 10)}/10` },           // Produtivo
+            { unlocked: stats.streakDays >= 7,      progress: `${Math.min(stats.streakDays, 7)}/7 dias` },            // Em Chamas
+            { unlocked: stats.totalCompleted >= 100,progress: `${Math.min(stats.totalCompleted, 100)}/100` },         // Mestre das Tarefas
+            { unlocked: this.hasUsedAllCategories(),progress: `${Math.min(usedCategoriesCount, 6)}/6 categorias` },   // Organizador Supremo
+            { unlocked: onTimeCount >= 20,          progress: `${Math.min(onTimeCount, 20)}/20` }                     // Pontual
         ];
 
         achievements.forEach((card, index) => {
-            if (achievementConditions[index]) {
-                card.classList.remove('locked');
-                card.classList.add('unlocked');
+            const data = achData[index];
+            if (!data) return;
+            card.classList.toggle('unlocked', data.unlocked);
+            card.classList.toggle('locked', !data.unlocked);
+
+            // Update description with progress hint
+            const desc = card.querySelector('p');
+            if (desc && data.progress) {
+                const baseText = desc.textContent.split('(')[0].trim();
+                desc.textContent = `${baseText} (${data.progress})`;
             }
         });
     }
@@ -718,8 +734,10 @@ class TaskManager {
     getOnTimeTasksCount() {
         return this.tasks.filter(task => {
             if (!task.completed) return false;
-            // Simplified: assume task was completed on time if completed
-            return new Date(task.date) >= new Date(task.date);
+            if (!task.completedAt) return false;
+            const dueEnd = new Date(task.date + 'T23:59:59');
+            const completedAt = new Date(task.completedAt);
+            return completedAt <= dueEnd;
         }).length;
     }
 
@@ -864,7 +882,7 @@ class TaskManager {
     checkUserAuth() {
         const userData = localStorage.getItem('ltpUser');
         if (!userData) {
-            window.location.href = 'index.html';
+            window.location.href = 'index.php';
             return;
         }
         
@@ -892,7 +910,7 @@ class TaskManager {
     logout() {
         if (confirm('Deseja realmente sair?')) {
             localStorage.removeItem('ltpUser');
-            window.location.href = 'index.html';
+            window.location.href = 'index.php';
         }
     }
 

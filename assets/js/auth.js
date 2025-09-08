@@ -74,8 +74,8 @@ document.addEventListener('DOMContentLoaded', function() {
                     loginTime: new Date().toISOString()
                 }));
                 
-                // Redirect to dashboard
-                window.location.href = 'dashboard.html';
+                // Redirect to dashboard (PHP)
+                window.location.href = 'dashboard.php';
             }, 1500);
         }
     });
@@ -109,7 +109,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 showMessage('Conta criada com sucesso! Redirecionando...', 'success');
                 
                 setTimeout(() => {
-                    window.location.href = 'dashboard.html';
+                    window.location.href = 'dashboard.php';
                 }, 1000);
             }, 1500);
         }
@@ -238,7 +238,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Check if user is already logged in
     const userData = localStorage.getItem('ltpUser');
     if (userData) {
-        window.location.href = 'dashboard.html';
+        window.location.href = 'dashboard.php';
     }
 
     // Add dynamic background effect
