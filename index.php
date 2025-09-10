@@ -7,12 +7,12 @@
     <link rel="stylesheet" href="assets/css/auth.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-<?php /* Página convertida para PHP (markup inalterado) */ ?>
+<?php  ?>
 </head>
 <body>
     <div class="container">
         <div class="auth-container">
-            <!-- Logo Section -->
+           
             <div class="logo-section">
                 <div class="logo">
                     <i class="fas fa-tasks"></i>
@@ -22,7 +22,7 @@
                 <p class="subtitle">Organize sua vida de forma simples e eficiente</p>
             </div>
 
-            <!-- Login Form -->
+          
             <div class="form-container" id="loginForm">
                 <div class="form-header">
                     <h2>Bem-vindo de volta!</h2>
@@ -61,7 +61,7 @@
                 </div>
             </div>
 
-            <!-- Register Form -->
+            
             <div class="form-container hidden" id="registerForm">
                 <div class="form-header">
                     <h2>Crie sua conta</h2>
@@ -84,7 +84,7 @@
                         <input type="password" placeholder="Senha" required id="registerPassword">
                         <i class="fas fa-eye toggle-password"></i>
                     </div>
-                    <!-- Indicador de força da senha -->
+                    
                     <div class="password-strength" id="passwordStrength" aria-hidden="true">
                         <div class="strength-bar"><span></span></div>
                         <small class="strength-text">Força da senha</small>
@@ -110,7 +110,7 @@
             </div>
         </div>
 
-        <!-- Background Animation -->
+        
         <div class="bg-animation">
             <div class="floating-task">
                 <i class="fas fa-check-circle"></i>

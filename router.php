@@ -1,5 +1,5 @@
 <?php
-// Simple router (optional)
+
 $path = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 $path = rtrim($path, '/');
 
